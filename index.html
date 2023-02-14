@@ -55,9 +55,19 @@
             <div class="wedge" style="--i:24;--clr:#FF0000"><span>no</span></div>
         </div>
     </div>
+    <div class="message">
+        Eva is So cute!
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script type="module" src="js/confetti.js"></script>
+    <!--Confetti code-->
+    <script>
+        window.module = {};
+    </script>
+    <script src="js/confetti.js"></script>
+    <script>
+        window.confetti = module.exports;
+    </script>
     <script type="module" src="js/drawText.js"></script>
-    <script type="module" src="js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

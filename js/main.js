@@ -34,16 +34,52 @@ let wheel = document.querySelector('.spinner'),
     whichGreen = 0,
     epsilon = 0,
     wheelSound = new Audio('sounds/prizeWheel.mp3'),
-    spinSound = new Audio('sounds/partyPopper.mp3');
+    pop = [
+        new Audio('sounds/partyPopper.mp3'),
+        new Audio('sounds/partyPopper.mp3'),
+        new Audio('sounds/partyPopper.mp3'),
+        new Audio('sounds/partyPopper.mp3')
+    ],
+    message = document.querySelector('.message'),
+    wheelContainer = document.querySelector('.container'),
+    title = document.querySelector('title'),
+    favi = document.querySelector('link');
 
 function celebrate(msg){
-    document.getElementsByTagName('title')[0].innerHTML = msg;
-    document.getElementsByTagName('link')[0].href = 'favicon2.ico';
-    console.log(msg);
+    title.innerHTML = msg;
+    favi.href = 'favicon2.ico';
+    message.innerHTML = msg;
+    message.style.display = 'default';
+    message.style.transform = 'translateY(0%)'; // translate it up to correct spot
+    setTimeout(()=>{
+        message.style.transform = 'translateY(200%)'; // hide message
+    },3*1000);
+    for (let i=0; i<1+Math.floor(2*Math.random()); i++){
+        setTimeout(()=>{
+            pop[i].play();
+            confetti({
+                particleCount: 100,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 }
+            });
+        },1000*Math.random());
+    }
+    for (let i=0; i<1+Math.floor(2*Math.random()); i++){
+        setTimeout(()=>{
+            pop[i+2].play();
+            confetti({
+                particleCount: 100,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 }
+            });
+        },1000*Math.random());
+    }
 }
 
 function spin(){
-    wheelSound.play();
+    wheelSound.currentTime = 0; wheelSound.play();
     fullRotations += Math.floor(2*Math.random()) + 2; // between 2-4 full rotations
     whichGreen = Math.floor(12*Math.random());
     epsilon = Math.floor(120*Math.random()-60)/10;
@@ -60,3 +96,9 @@ function spin(){
 }
 
 spinBtn.onclick = spin;
+setTimeout(()=>{
+    wheelContainer.style.display = 'flex';
+}, 4000);
+setTimeout(()=>{
+    wheelContainer.style.transform = 'translateY(0%)';
+}, 4100);

@@ -12,11 +12,12 @@ body{
     height: 800px;
     max-height: 50vh;
     max-width: 50vh;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     font-family: 'Poppins';
-    /*display: none;*/
+    transform: translateY(200%);
+    transition: transform 1s cubic-bezier(0, 0, 0.2, 1);
 }
 .container .spinBtn{
     position: absolute;
